@@ -1,0 +1,401 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&display=swap');
+
+/* ─── Design Tokens ──────────────────────────────────────────────────────────── */
+:root {
+  font-family: Manrope, system-ui, sans-serif;
+  color: #f4f2ff;
+  background: #090914;
+  font-synthesis: none;
+  --accent: #b78aff;
+  --accent-dim: #8955ee;
+  --surface: #171528;
+  --border: #302747;
+  --muted: #9c92b8;
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  background: radial-gradient(ellipse at 50% 0%, #20143b 0, #0b0a18 45%, #080811 100%);
+  min-height: 100vh;
+}
+button, input, select { font: inherit; }
+button { cursor: pointer; border: 0; }
+
+/* ─── Layout ─────────────────────────────────────────────────────────────────── */
+main { max-width: 1180px; margin: auto; padding: 26px 28px 20px; }
+
+header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid var(--border);
+  padding-bottom: 18px;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+.header-right { display: flex; align-items: center; gap: 18px; flex-wrap: wrap; }
+
+.brand { font-weight: 800; letter-spacing: 2px; display: flex; gap: 10px; align-items: center; }
+.brand span { font-size: 14px; }
+.brand b { color: var(--accent); }
+
+/* ─── Typography Utilities ───────────────────────────────────────────────────── */
+.tag, .eyebrow, .features, .sectionhead > span, .round, .secret small, footer {
+  font: 11px 'DM Mono', monospace;
+  letter-spacing: 1.5px;
+  color: var(--muted);
+}
+.eyebrow { color: var(--accent); }
+
+/* ─── Welcome Screen ─────────────────────────────────────────────────────────── */
+.welcome { max-width: 580px; margin: 65px auto 0; text-align: center; }
+.welcome h1 {
+  font-size: clamp(38px, 7vw, 70px);
+  line-height: 1.03;
+  letter-spacing: -3px;
+  margin: 16px 0;
+}
+.welcome h1 em { font-style: normal; color: var(--accent); }
+.sub { color: #a8a2bb; line-height: 1.7; max-width: 470px; margin: 0 auto 30px; }
+
+/* ─── Panel ──────────────────────────────────────────────────────────────────── */
+.panel {
+  background: linear-gradient(145deg, #171528, #11101e);
+  border: 1px solid var(--border);
+  border-radius: 18px;
+  padding: 22px;
+  box-shadow: 0 14px 50px #0003;
+}
+.setup { text-align: left; max-width: 440px; margin: auto; }
+.setup label, .duel-toggle {
+  display: block;
+  font-size: 12px;
+  color: #b8b1ca;
+  margin: 0 0 8px;
+}
+.duel-toggle { display: flex; align-items: center; gap: 8px; margin: 16px 0 4px; cursor: pointer; }
+.duel-toggle input { width: auto; accent-color: var(--accent); transform: scale(1.2); }
+.duel-toggle small { color: var(--muted); font-size: 11px; }
+
+/* ─── Inputs ─────────────────────────────────────────────────────────────────── */
+.setup input, .join input, .clueform input {
+  width: 100%;
+  background: #0c0b17;
+  border: 1px solid #39304e;
+  border-radius: 9px;
+  padding: 13px;
+  color: white;
+  outline: none;
+  transition: border-color 0.2s;
+}
+.setup input:focus, .join input:focus, .clueform input:focus { border-color: var(--accent); }
+.name-error { color: #ff7eb3; font-size: 12px; margin: 4px 0 8px; }
+
+/* ─── Avatars ────────────────────────────────────────────────────────────────── */
+.avatars { display: flex; gap: 8px; margin: 8px 0 20px; flex-wrap: wrap; }
+.avatars button {
+  background: #242038;
+  border: 1px solid transparent;
+  border-radius: 10px;
+  padding: 9px;
+  font-size: 22px;
+  transition: transform 0.15s, border-color 0.15s;
+}
+.avatars button:hover { transform: scale(1.1); }
+.avatars button.selected { border-color: var(--accent); background: #382650; }
+
+/* ─── Settings Grid ──────────────────────────────────────────────────────────── */
+.settings { display: grid; grid-template-columns: 1fr 1fr; gap: 8px 12px; margin: 15px 0; }
+.settings > div > label { display: block; font-size: 12px; color: #b8b1ca; margin-bottom: 6px; }
+.settings select, .settings input[type="range"] {
+  background: #0c0b17;
+  border: 1px solid #39304e;
+  color: white;
+  padding: 10px;
+  border-radius: 8px;
+  width: 100%;
+}
+
+/* ─── Buttons ────────────────────────────────────────────────────────────────── */
+.primary {
+  width: 100%;
+  background: linear-gradient(90deg, #8955ee, #b15bdb);
+  color: white;
+  border-radius: 10px;
+  padding: 14px;
+  font-weight: 800;
+  letter-spacing: 1px;
+  margin-top: 12px;
+  transition: opacity 0.2s, transform 0.1s;
+}
+.primary:not(:disabled):hover { opacity: 0.9; transform: translateY(-1px); }
+.primary:disabled { opacity: .4; cursor: not-allowed; }
+.primary span { float: right; }
+
+.secondary {
+  padding: 10px 14px;
+  border: 1px solid #57416f;
+  border-radius: 8px;
+  background: transparent;
+  color: #c9a9ff;
+  transition: background 0.2s;
+}
+.secondary:hover { background: #1c1530; }
+
+.or { text-align: center; color: #77718d; font: 10px 'DM Mono'; letter-spacing: 2px; margin: 18px; }
+
+.join { display: flex; gap: 8px; }
+.join input { text-transform: uppercase; letter-spacing: 3px; }
+.join button, .clueform button {
+  background: #29213e;
+  color: #cbb1ff;
+  border: 1px solid #634a8a;
+  border-radius: 9px;
+  padding: 0 18px;
+  font-weight: 800;
+  white-space: nowrap;
+  transition: background 0.15s;
+}
+.join button:hover:not(:disabled), .clueform button:hover:not(:disabled) { background: #39305e; }
+.join button:disabled { opacity: 0.4; cursor: not-allowed; }
+.clueform button:disabled { opacity: 0.4; cursor: not-allowed; }
+
+.features { display: flex; justify-content: center; gap: 24px; margin: 24px 0; flex-wrap: wrap; }
+.notice { color: #d5b9ff; text-align: center; font-size: 13px; padding: 10px; border-radius: 8px; background: #1a1230; border: 1px solid #4a3070; margin-top: 8px; }
+
+/* ─── Audio Controls ─────────────────────────────────────────────────────────── */
+.audio-controls {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: #12101f;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 6px 10px;
+}
+.audio-btn {
+  background: #1e1a30;
+  border: 1px solid #3a3050;
+  border-radius: 7px;
+  padding: 5px 8px;
+  font-size: 14px;
+  color: #cbbfdd;
+  transition: background 0.15s;
+}
+.audio-btn:hover { background: #2e2748; }
+.audio-btn.active { border-color: var(--accent); background: #2d1e4a; }
+.audio-btn.muted { opacity: 0.5; }
+
+.vol-sliders {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 10px;
+  color: var(--muted);
+}
+.vol-sliders input[type="range"] {
+  width: 55px;
+  height: 3px;
+  accent-color: var(--accent);
+  background: transparent;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+}
+
+/* ─── Game Layout ────────────────────────────────────────────────────────────── */
+.game { margin-top: 28px; }
+
+.gamebar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #171427;
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 16px 20px;
+  margin-bottom: 18px;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+.roomcode { font: 22px 'DM Mono'; letter-spacing: 3px; display: block; color: #d2b5ff; }
+.copy { background: #31234b; color: #d9c5ff; border-radius: 5px; padding: 5px 8px; font-size: 10px; }
+.round { text-align: center; }
+.round small { display: block; margin-top: 5px; color: #d0b1ff; }
+.timer { font: 24px 'DM Mono'; color: #c99aff; }
+
+.columns {
+  display: grid;
+  grid-template-columns: minmax(0, 1.7fr) minmax(230px, 0.8fr);
+  gap: 18px;
+}
+.left, .right { display: flex; flex-direction: column; gap: 16px; }
+
+/* ─── Player Grid ────────────────────────────────────────────────────────────── */
+.sectionhead { display: flex; justify-content: space-between; align-items: center; }
+.sectionhead h2, .panel h2 { margin: 0 0 15px; font-size: 20px; }
+.sectionhead h2 small { color: #8e87a4; font-size: 13px; }
+
+.playergrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  gap: 10px;
+}
+.player {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  background: #100f1d;
+  border: 1px solid #2c2540;
+  border-radius: 12px;
+  padding: 13px 6px;
+  gap: 5px;
+  transition: border-color 0.2s;
+}
+.player .avatar { font-size: 27px; }
+.player b { font-size: 12px; }
+.player small { font: 9px 'DM Mono'; color: var(--muted); }
+.player strong { font-size: 11px; color: #c7a5ff; }
+.player.out { opacity: .45; }
+.player.disconnected { border-color: #5a2040; background: #140e1a; }
+
+.hint { font-size: 12px; color: #9c95af; line-height: 1.6; }
+
+/* ─── Secret Word ────────────────────────────────────────────────────────────── */
+.secret {
+  background: #241a39;
+  border: 1px solid #654b8c;
+  border-radius: 12px;
+  padding: 17px;
+  margin: 15px 0;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.secret strong { font-size: 28px; color: #d9bfff; }
+.secret span { font-size: 11px; color: #a99ac4; }
+.secret.impostor { background: #351a2b; border-color: #854061; }
+.secret.impostor strong { color: #ff91bd; }
+
+/* ─── Clue & Chat ────────────────────────────────────────────────────────────── */
+.clueform { display: flex; gap: 8px; margin: 12px 0; }
+.clueform input { flex: 1; min-width: 0; }
+.cluelist { border-top: 1px solid var(--border); margin-top: 14px; padding-top: 8px; }
+.cluelist p, .chatlog p { font-size: 13px; color: #c8c1d8; line-height: 1.5; margin: 4px 0; }
+.cluelist b, .chatlog b { color: #c89fff; }
+
+.chat { margin-top: 14px; }
+.chatlog { max-height: 170px; overflow-y: auto; padding-right: 4px; }
+.chatlog::-webkit-scrollbar { width: 4px; }
+.chatlog::-webkit-scrollbar-track { background: transparent; }
+.chatlog::-webkit-scrollbar-thumb { background: #4a3870; border-radius: 4px; }
+
+/* ─── Voting ─────────────────────────────────────────────────────────────────── */
+.vote {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px;
+  margin: 7px 0;
+  background: #211b33;
+  border: 1px solid #46365f;
+  color: white;
+  border-radius: 9px;
+  transition: background 0.15s, transform 0.1s;
+}
+.vote:hover { background: #2d2442; transform: translateX(2px); }
+.vote span { font: 10px 'DM Mono'; color: #c49aff; }
+
+/* ─── Role Card ──────────────────────────────────────────────────────────────── */
+.role {
+  padding: 13px;
+  border-radius: 9px;
+  background: #1d2c25;
+  color: #9af0bc;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  font-size: 12px;
+}
+.role.impostor { background: #351a2b; color: #ff9dc4; }
+.role span { font-size: 11px; color: #d1c7dc; }
+
+/* ─── Reveal ─────────────────────────────────────────────────────────────────── */
+.reveal { text-align: center; }
+.reveal ol { text-align: left; max-width: 300px; margin: 18px auto; color: #c9c1d9; font-size: 13px; line-height: 2; }
+.reveal h3 { margin-top: 20px; }
+
+/* ─── Duel Mode Badge ────────────────────────────────────────────────────────── */
+.duel-badge {
+  display: inline-block;
+  font: 10px 'DM Mono';
+  letter-spacing: 1.5px;
+  color: #ffca80;
+  background: #2c1e0a;
+  border: 1px solid #6b4a1a;
+  border-radius: 6px;
+  padding: 4px 10px;
+  margin-bottom: 10px;
+}
+
+/* ─── Sidebar ────────────────────────────────────────────────────────────────── */
+.right h3 { font: 11px 'DM Mono'; letter-spacing: 1.5px; color: #b89bde; margin: 0 0 14px; }
+.right p { font-size: 12px; color: #aaa3ba; line-height: 1.6; }
+
+/* ─── Footer ─────────────────────────────────────────────────────────────────── */
+footer { text-align: center; padding: 30px 0 8px; font-size: 9px; font: 9px 'DM Mono'; letter-spacing: 1.5px; color: var(--muted); }
+footer span { color: var(--accent); margin: 0 8px; }
+
+/* ─── Mobile Responsive ──────────────────────────────────────────────────────── */
+@media (max-width: 760px) {
+  main { padding: 16px 14px 20px; }
+
+  .tag { display: none; }
+  .welcome { margin-top: 32px; }
+
+  /* Stack audio controls more compactly */
+  .audio-controls { padding: 5px 8px; gap: 6px; }
+  .vol-sliders { display: none; }      /* hidden on mobile — sliders are hard to use */
+  .header-right { gap: 10px; }
+
+  /* Stack game columns vertically */
+  .columns {
+    grid-template-columns: 1fr;
+  }
+  /* Move sidebar to a 2-col grid below main content */
+  .right {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+  }
+  .right .panel:last-child { grid-column: 1 / -1; }
+
+  .gamebar {
+    padding: 12px 14px;
+    gap: 8px;
+  }
+  .roomcode { font-size: 18px; }
+  .timer { font-size: 20px; }
+
+  .features { gap: 12px; font-size: 9px; }
+
+  .playergrid { grid-template-columns: repeat(2, 1fr); }
+
+  .settings { grid-template-columns: 1fr; }
+
+  .panel { padding: 16px; border-radius: 14px; }
+
+  .welcome h1 { letter-spacing: -2px; }
+
+  .secret strong { font-size: 22px; }
+}
+
+@media (max-width: 400px) {
+  .join { flex-direction: column; }
+  .join button { padding: 12px; }
+  .avatars { gap: 5px; }
+  .avatars button { padding: 7px; font-size: 18px; }
+  .right { grid-template-columns: 1fr; }
+}
